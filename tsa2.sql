@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2026 at 07:02 PM
+-- Generation Time: Oct 09, 2026 at 07:01 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `task_db`
+-- Database: `tsa2`
 --
 
 -- --------------------------------------------------------
@@ -32,22 +32,23 @@ CREATE TABLE `tasks` (
   `title` varchar(150) NOT NULL,
   `status` varchar(20) NOT NULL DEFAULT 'pending',
   `task_date` date NOT NULL,
-  `created_at` datetime NOT NULL
+  `created_at` datetime NOT NULL,
+  `is_archived` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tasks`
 --
 
-INSERT INTO `tasks` (`id`, `title`, `status`, `task_date`, `created_at`) VALUES
-(1, 'Finish CodeIgniter project', 'pending', '2026-09-29', '2026-09-29 00:27:37'),
-(2, 'Review database schema', 'completed', '2026-09-29', '2026-09-29 00:27:37'),
-(3, 'Buy groceries', 'pending', '2026-09-28', '2026-09-29 00:27:37'),
-(4, 'Clean the room', 'completed', '2026-09-28', '2026-09-29 00:27:37'),
-(5, 'Pay utility bills', 'pending', '2026-09-30', '2026-09-29 00:27:37'),
-(6, 'Team sync meeting', 'pending', '2026-09-30', '2026-09-29 00:27:37'),
-(7, 'Workout session', 'completed', '2026-09-27', '2026-09-29 00:27:37'),
-(8, 'Read a book', 'pending', '2026-10-01', '2026-09-29 00:27:37');
+INSERT INTO `tasks` (`id`, `title`, `status`, `task_date`, `created_at`, `is_archived`) VALUES
+(1, 'Finish CodeIgniter project', 'pending', '2026-09-29', '2026-09-29 00:27:37', 0),
+(2, 'Review database schema', 'completed', '2026-09-29', '2026-09-29 00:27:37', 0),
+(3, 'Buy groceries', 'pending', '2026-09-28', '2026-09-29 00:27:37', 0),
+(4, 'Clean the room', 'completed', '2026-09-28', '2026-09-29 00:27:37', 0),
+(5, 'Pay utility bills', 'pending', '2026-09-30', '2026-09-29 00:27:37', 0),
+(6, 'Team sync meeting', 'pending', '2026-09-30', '2026-09-29 00:27:37', 0),
+(7, 'Workout session', 'completed', '2026-09-27', '2026-09-29 00:27:37', 0),
+(8, 'Read a book', 'pending', '2026-10-01', '2026-09-29 00:27:37', 0);
 
 -- --------------------------------------------------------
 
@@ -60,15 +61,17 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `full_name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `created_at` datetime NOT NULL
+  `created_at` datetime NOT NULL,
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `full_name`, `email`, `created_at`) VALUES
-(1, 'johndoe', 'John Doe', 'johndoe@example.com', '2026-09-29 00:27:37');
+INSERT INTO `users` (`id`, `username`, `full_name`, `email`, `created_at`, `password`) VALUES
+(1, 'johndoe', 'John Doe', 'johndoe@example.com', '2026-09-29 00:27:37', ''),
+(2, 'admin', '', '', '0000-00-00 00:00:00', '123');
 
 --
 -- Indexes for dumped tables
@@ -101,7 +104,7 @@ ALTER TABLE `tasks`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,25 +1,12 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Models;
 
-use App\Models\UserModel;
+use CodeIgniter\Model;
 
-class Users extends BaseController
+class UserModel extends Model
 {
-    public function index()
-    {
-        $userModel = new UserModel();
-
-        $users = $userModel->findAll();
-
-        $data['users'] = array_map(function ($user) {
-            return [
-                'username' => $user['username'],
-                'fullname' => $user['full_name'],
-                'role'     => 'User',
-            ];
-        }, $users);
-
-        return view('users', $data);
-    }
+    protected $table = 'users';
+    protected $primaryKey = 'id';
+    protected $allowedFields = ['username', 'password'];
 }
